@@ -23,6 +23,12 @@ public class CameraModel : MonoBehaviour
     public float min_distance = 1; //最大小距离
     public float max_distance = 150; // 最大距离
 
+    public float panSpead = 20f;
+    public float panBorderThickness = 10f;
+
+    float inputx;
+    public float inputy;
+
     private void Start()
     {
         center = Vector3.zero;
@@ -30,36 +36,43 @@ public class CameraModel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1)) // 右键旋转
+        Vector3 pos = transform.position;
+        if (Input.GetKey("w"))
         {
-            if (axes == RotationAxes.MouseXAndY)
-            {
-                float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-            }
-            else if (axes == RotationAxes.MouseX)
-            {
-                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
-            }
-            else
-            {
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-                transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
-            }
+            pos.z += panSpead * Time.deltaTime;
+        }
+        if (Input.GetKey("s"))
+        {
+            pos.z -= panSpead * Time.deltaTime;
+        }
+        if (Input.GetKey("a"))
+        {
+            pos.x -= panSpead * Time.deltaTime;
+        }
+        if (Input.GetKey("d"))
+        {
+            pos.x += panSpead * Time.deltaTime;
+        }
+        if (Input.GetKey("space"))
+        {
+            pos.y += panSpead * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.RightShift))
+        {
+            pos.y -= panSpead * Time.deltaTime;
+        }
+        transform.position = pos;
+        inputx = Input.GetAxis("Horizontal");
+        inputy = Input.GetAxis("Vertical");
+        if (inputx != 0)
+        {
+            rotate();
+        }
+        if (inputy != 0)
+        {
+            move();
         }
 
-        if (Input.GetMouseButton(2)) // 中键平移
-        {
-            Vector3 p0 = transform.position;
-            Vector3 p01 = p0 - transform.right * Input.GetAxisRaw("Mouse X") * 1 * Time.timeScale;
-            Vector3 p03 = p01 - transform.up * Input.GetAxisRaw("Mouse Y") * 1 * Time.timeScale;
-
-            center = new Vector3(p03.x, 0, p03.z);
-            transform.position = p03;
-        }
         var c = Camera.main;
         if (Input.GetAxis("Mouse ScrollWheel") > 0) // 视角拉近
         {
@@ -92,5 +105,15 @@ public class CameraModel : MonoBehaviour
                 }
             }
         }
+
+    }
+    private void rotate()
+    {
+        transform.Rotate(new Vector3(0f, inputx * Time.deltaTime * 3, 0f));
+    }
+
+    private void move()
+    {
+        transform.position += transform.forward * inputy * Time.deltaTime * 3;
     }
 }

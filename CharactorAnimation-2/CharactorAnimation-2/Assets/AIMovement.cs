@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -62,11 +63,21 @@ public class AIMovement : MonoBehaviour
             animator.SetFloat("Speed", navAgent.velocity.magnitude / slider.maxValue);
         }
 
-        if(Input.GetMouseButton(0))
+        if ((Math.Abs(navAgent.destination.x - navAgent.nextPosition.x) <= 0.5f
+                        && Math.Abs(navAgent.destination.y - navAgent.nextPosition.y) <= 0.5f
+                        && Math.Abs(navAgent.destination.z - navAgent.nextPosition.z) <= 0.5f))
+        {
+
+            navAgent.ResetPath();
+
+        }
+
+        if (Input.GetMouseButton(1))
         {
             print("Move");
             MouseClickCheck();
         }
+
     }
 
     void MouseClickCheck()
