@@ -11,4 +11,5 @@ Right-click to make the animator move.
 scroll to zoom in and zoom out the camera view.
 
 Part III:
+Similar to Part II, adjust the speed bar on the top left corner to adjust the animator crowd's speed. 
 Right-click to move the animator crowd.
