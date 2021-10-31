@@ -1,15 +1,27 @@
-# B3
 Part I: 
-You can move the animator by WASD: W moves forward, A turn to your right(the animator's left), S move backward, D turns to your left(the animator's right). 
-You can make the animator run by pressing both a direction key(W or S) and E. You can also make it jump while running by also pressing the space key along. 
-You can make the animator jump while walking by pressing a direction key(W or S) and the space key together. 
-Scroll to zoom in and zoom out the camera view.
+
+Move the animator by WASD: 
+W key: move forward
+A key: turn to the animator's left 
+S key: move backward
+D key: turns to the animator's right
+E key: Run
+W/S+A/D: turn while walking
+W/S+A/D+E: turn while running
+Space key: Jump while idle
+W/S+E:  run from idle or from walking
+W+E+Space: jump while running
+W+Space: jump while walking
+Scroll: zoom in and zoom out the camera view
 
 Part II: 
-Adjust the speed bar on the top left corner to adjust the animator's moving speed. 
-Right-click to make the animator move. 
-scroll to zoom in and zoom out the camera view.
+
+1. Adjust the speed bar on the top left corner to adjust the animator's moving speed. 
+2. Left click on the animator
+3. Right-click to make the animator move
+4. Press W to move up camera view, S to move down, A to move to the left, D to move to the right, scroll to zoom in and zoom out.
 
 Part III: 
-Similar to Part II, adjust the speed bar on the top left corner to adjust the animator crowd's speed. 
-Right-click to move the animator crowd.
+1. Adjust the speed bar on the top left corner to adjust the animator crowd's speed. 
+2. Right-click to move the animator crowd
+3. Press W to move up camera view, S to move down, A to move to the left, D to move to the right, scroll to zoom in and zoom out
